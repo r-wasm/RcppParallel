@@ -150,6 +150,13 @@ if (!is.na(tbbRoot)) {
    
 }
 
+if (R.version$os == "emscripten") {
+   if (system("pkg-config --exists tbb32") == 0) {
+      tbbLib <- system("pkg-config --variable=libdir tbb32", intern = TRUE)
+      tbbInc <- system("pkg-config --variable=includedir tbb32", intern = TRUE)
+   }
+}
+
 # if TBB_LIB is defined, guess TBB_INC
 if (!is.na(tbbLib) && is.na(tbbInc)) {
    tbbIncCandidate <- file.path(tbbLib, "../include")

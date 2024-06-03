@@ -49,7 +49,7 @@
       # perform the copy
       file.copy(tbbLibs, tbbDest)
       
-   } else {
+   } else if (R.version$os != "emscripten") {
       
       # using system tbb
       tbbLibs <- list.files(
